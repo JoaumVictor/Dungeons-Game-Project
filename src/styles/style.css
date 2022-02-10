@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --colorBackgroundDragon: rgb(55,45,57);
+}
+
+body {
+  background-color: var(--colorBackgroundDragon);
+  font-family: 'SF Pixelate Shaded', sans-serif;
+  margin-top: 4%;
+}
+
+header {
+  display: flex;
+  font-size: 25px;
+  justify-content: center;
+}
+
+.title-game {
+  font-family: 'SF Pixelate Shaded', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  text-shadow: 0.05em 0 0  rgb(255,0,0,0.75),
+  0.025em -0.05em 0  rgb(0,255,0,0.75),
+  0.025em 0 05em 0 rgb(0,0,255,0.75);
+  color: #b92b18;
+}
+
+
+
+.marcar {
+  border: 3px solid red;
+}
+
+.tela-inicial {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-flow: column nowrap;
+  margin-top: 5%;
+}
+
+.dragon-image {
+  height: 50vh;
+}
+
+#header {
+}
+
+.button-start {
+  margin-top: 3%;
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  color: #cf4e1b;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-size: 24px;
+  overflow: hidden;
+  transition: 0.2s;
+  background-color: transparent;
+  border: none;
+  font-family: 'SF Pixelate Shaded', sans-serif;
+  cursor: pointer;
+}
+
+.button-start:hover {
+  color: white;
+  background: #e25822;
+  box-shadow: 0 0 10px rgb(0,0,0), 0 0 40px #e25855 , 0 0 80px #e23822;
+  border-radius: 2px;
+}

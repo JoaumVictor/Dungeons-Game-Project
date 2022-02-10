@@ -1,0 +1,111 @@
+@import url('http://fonts.cdnfonts.com/css/share-tech-mono');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background-color: rgb(55, 45, 57);
+}
+
+h1 {
+  font-family: 'SF Pixelate Shaded', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  text-shadow: 0.05em 0 0  rgb(255,0,0,0.75),
+  0.025em -0.05em 0  rgb(0,255,0,0.75),
+  0.025em 0 05em 0 rgb(0,0,255,0.75);
+  color: #b92b18;
+  padding: 30px;
+}
+
+.class img {
+  max-width: 45px;
+  max-height: 45px;
+}
+
+.class .button {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  float: left;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  text-align: center;
+  transition: all 0.6s ease-out;
+}
+
+.class .button:hover {
+  width: 200px;
+  right: 250px;
+}
+
+.class .button img {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  font-size: 25px;
+  line-height: 60px;
+  border-radius: 50px;
+  box-sizing: border-box;
+  padding: 2px;
+  margin-top: 5.5px;
+}
+
+.class .button img i {
+  font-size: 25px;
+  line-height: 60px;
+}
+
+.class .button span {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  font-family: 'SF Pixelate Shaded', sans-serif;
+}
+
+main {
+  margin-top: 80px;
+}
+
+.spriteView {
+  width: 20% !important;
+}
+
+.class-image {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90vw;
+}
+
+.marcar {
+  border: 3px solid red;
+}
+
+.input-name {
+  text-align: center;
+  font-family: 'Share Tech Mono', sans-serif;
+  color: white;
+  font-size: 20px;
+}
+
+#char-name {
+  height: 30px;
+  width: 500px;
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 20px;
+  text-align: center;
+}
