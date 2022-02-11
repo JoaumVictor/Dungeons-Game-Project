@@ -7,20 +7,27 @@
 }
 
 body {
-  display: grid;
+  display: flex;
+  background-image: url();
+  flex-flow: column nowrap;
   height: 100%;
   width: 100%;
   place-items: center;
-  background-color: rgb(55, 45, 57);
+  background-color: #222;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(https://i.pinimg.com/originals/29/28/7d/29287dbe2273424039448da43132f59b.gif);
+}
+
+nav {
+  display: grid;
 }
 
 h1 {
   font-family: 'SF Pixelate Shaded', sans-serif;
   font-size: 4rem;
   font-weight: 700;
-  text-shadow: 0.05em 0 0  rgb(255,0,0,0.75),
-  0.025em -0.05em 0  rgb(0,255,0,0.75),
-  0.025em 0 05em 0 rgb(0,0,255,0.75);
+  text-shadow: 0.05em 0 0 rgb(255, 0, 0, 0.75), 0.025em -0.05em 0 rgb(0, 255, 0, 0.75), 0.025em 0 05em 0 rgb(0, 0, 255, 0.75);
   color: #b92b18;
   padding: 30px;
 }
@@ -83,6 +90,7 @@ main {
 
 .spriteView {
   width: 20% !important;
+  cursor: pointer;
 }
 
 .class-image {
@@ -92,7 +100,7 @@ main {
 }
 
 .marcar {
-  border: 3px solid red;
+  
 }
 
 .input-name {
@@ -108,4 +116,61 @@ main {
   font-family: 'Share Tech Mono', sans-serif;
   font-size: 20px;
   text-align: center;
+  padding: 15px;
+  background-color: rgba(17, 14, 31, 0.541);
+}
+
+#char-name:focus {
+  outline: none;
+  border: 2px inset white;
+}
+
+.input-name {
+  margin-bottom: 20px;
+}
+
+.description {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: fit-content;
+  color: white;
+  font-size: 25px;
+  font-weight: 700;
+  font-family: 'Share Tech Mono', sans-serif;
+  margin: 20px auto auto auto;
+  background-color: rgba(17, 14, 31, 0.541);
+  padding: 15px;
+}
+
+.selected-skin {
+  border: 5px inset rgba(17, 14, 31, 0.863);
+  width: 20% !important;
+}
+
+.btn-final .confirm-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-family: 'Share Tech Mono', sans-serif;
+  color: white;
+  font-size: 20px;
+  background: none;
+  text-decoration: none;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.confirm-btn:hover:enabled {
+  color: rgb(65, 238, 65);
+  background: #252525;
+  box-shadow: 0 0 10px rgb(0,0,0), 0 0 40px #5ae255 , 0 0 80px #e23822;
+  border-radius: 2px;
+}
+
+.btn-final {
+  display:flex;
+  justify-content: center;
+  padding-top: 20px;
 }
