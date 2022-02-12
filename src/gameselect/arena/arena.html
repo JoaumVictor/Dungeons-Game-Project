@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./arena.css">
+  <title>ARENA</title>
+</head>
+
+<body>
+  <main class="principal">
+    <div class="arena-container">
+      <section class="player">
+        <p class="nick-p1">carregando...</p>
+        <img class='sprite sprite-p1' src='https://i.pinimg.com/originals/93/54/07/9354077a4482a2eb28c9adab80b9442b.gif'>
+        <div class="separar alinhar">
+          <div class="alinhar separar">
+            <img class="icones" src="../../img/icons/hp-potion.png" alt="">
+            <p class="player-vida css-names">...</p>
+          </div>
+          <div class="alinhar separar">
+            <img class="icones" src="../../img/icons/mana-potion.png" alt="imagem da mana">
+            <p class="player-mana css-names">...</p>
+          </div>
+        </div>
+        <div class="skils-player">
+          <button class="skils-buttons">Ataque Básico</button>
+          <button class="skils-buttons">Truque</button>
+          <button class="skils-buttons">Habilidade</button>
+        </div>
+      </section>
+
+      <section class='rounds'>
+        <p class="css-round">Round: </p>
+        <p class="counter-round css-round">1</p>
+      </section>
+
+      <section class="enemy">
+        <p class="nick-enemy">carregando</p>
+        <img class='sprite sprite-enemy' src='https://i.pinimg.com/originals/93/54/07/9354077a4482a2eb28c9adab80b9442b.gif' alt="">
+        <div class="separar alinhar">
+          <div class="alinhar separar">
+            <img class="icones" src="../../img/icons/hp-potion.png" alt="">
+            <p class="enemy-vida css-names">...</p>
+          </div>
+          <div class="alinhar separar">
+            <img class="icones" src="../../img/icons/mana-potion.png" alt="imagem da mana">
+            <p class="enemy-mana css-names">...</p>
+          </div>
+        </div>
+        <div class="skils">
+          <button class="skils-buttons esconder">Ataque Básico</button>
+          <button class="skils-buttons esconder">Truque</button>
+          <button class="skils-buttons esconder">Habilidade</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="combat-info">
+      <p class="text-combate typing-animation">Carregando...</p>
+    </section>
+
+    <audio class="theme-song" src="../../sounds/arena-theme1.mp3" type="audio/mp3"></audio>
+  </main>
+  <script type="module" src="./arena.js"></script>
+</body>
+
+</html>

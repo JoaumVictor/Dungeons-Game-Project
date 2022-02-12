@@ -28,7 +28,7 @@ h1 {
   font-size: 4rem;
   font-weight: 700;
   text-shadow: 0.05em 0 0 rgb(255, 0, 0, 0.75), 0.025em -0.05em 0 rgb(0, 255, 0, 0.75), 0.025em 0 05em 0 rgb(0, 0, 255, 0.75);
-  color: #b92b18;
+  color: #5ae255;
   padding: 30px;
 }
 
@@ -144,8 +144,18 @@ main {
 }
 
 .selected-skin {
-  border: 5px inset rgba(17, 14, 31, 0.863);
+  border: 3px inset white;
   width: 20% !important;
+  animation: box-blink 500ms infinite normal;
+}
+
+@keyframes box-blink {
+  from {
+    border-color:white;
+  }
+  to {
+    border-color: transparent;
+  }
 }
 
 .btn-final .confirm-btn {
@@ -162,7 +172,7 @@ main {
   cursor: pointer;
 }
 
-.confirm-btn:hover:enabled {
+.confirm-btn:hover {
   color: rgb(65, 238, 65);
   background: #252525;
   box-shadow: 0 0 10px rgb(0,0,0), 0 0 40px #5ae255 , 0 0 80px #e23822;
@@ -173,4 +183,15 @@ main {
   display:flex;
   justify-content: center;
   padding-top: 20px;
+}
+
+#char-name {
+  color: white;
+}
+
+.arena {
+  display: none;
+  width: 100vh;
+  height: 100vh;
+  border: 2px solid white;
 }

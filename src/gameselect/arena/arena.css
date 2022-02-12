@@ -1,0 +1,169 @@
+@import url('http://fonts.cdnfonts.com/css/share-tech-mono');
+@import url('http://fonts.cdnfonts.com/css/pf-tempesta-seven');
+
+* {
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(https://preview.redd.it/imb31w5ajcx61.png?auto=webp&s=209767c8c35c075005603150f9a8551883b6b6a5);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.marcar {
+  border: 3px solid red;
+}
+
+.principal {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.arena-container {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 100px;
+  padding-right: 125px;
+  margin-top: 25px;
+  margin-bottom: 75px;
+}
+
+.alinhar {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.sprite {
+  width: 350px;
+}
+
+.esconder {
+  display: none;
+}
+
+.separar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.player {
+  align-items: center;
+  text-align: center;
+}
+
+.css-names {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 25px;
+  color: white;
+}
+
+.nick-p1 {
+  font-size: 30px;
+  font-family: 'Share Tech Mono', sans-serif;
+  color: white;
+  border: 1px solid white;
+  text-align: center;
+  padding: 10px;
+}
+
+.rounds {
+  display: flex;
+  margin-top: 20%;
+}
+
+.css-round {
+  font-size: 30px;
+  font-family: 'Share Tech Mono', sans-serif;
+  color: white;
+}
+
+.enemy {
+  text-align: center;
+}
+
+.nick-enemy {
+  font-size: 30px;
+  font-family: 'Share Tech Mono', sans-serif;
+  color: white;
+  border: 1px solid white;
+  text-align: center;
+  padding: 10px;
+}
+
+.sprite-enemy {
+  transform: scaleX(-1);
+}
+
+.icones {
+  max-width: 30px;
+}
+
+.skils-buttons {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 14px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0.5px solid white;
+  color: white;
+  font-weight: 700;
+  margin: 5px;
+}
+
+.skils-buttons:hover {
+  border: 1px solid #5ae255;
+  box-shadow: 1px 2px 5px #5ae255;
+}
+
+.combat-info {
+  width: 700px;
+  border: 2px solid white;
+  background-image: url(https://giffiles.alphacoders.com/211/211748.gif);
+}
+
+.typing-animation {
+  animation: blinkCursor 500ms infinite normal, typing 1s steps(40) 1s normal;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 700px;
+  }
+}
+
+@keyframes blinkCursor {
+  from {
+    border-right-color: rgba(255, 225, 255, .75);
+  }
+  to{
+    border-right-color: transparent;
+  }
+}
+
+.text-combate {
+  font-family: 'PF Tempesta Seven', sans-serif;
+  border-right: 2px solid rgba(255, 255, 255, .75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}
+
+.turn-count {
+  font-family: 'PF Tempesta Seven', sans-serif;
+  border-right: 2px solid rgba(255, 255, 255, .75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}

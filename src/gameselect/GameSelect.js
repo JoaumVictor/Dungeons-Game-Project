@@ -1,63 +1,132 @@
-import URLS from '../img/url.js'
+/* eslint-disable import/extensions */
+import URLS from '../img/URLS.js';
+import { fichaEmBranco, atributos } from './Dados.js';
 
-const getChar = async (classe) => {
-  const response = await fetch(`https://api.open5e.com/classes/${classe}`);
-  const data = await response.json();
-  console.log(data);
-  return data;
+let characterSelected;
+
+const themeSong = () => {
+  const audio2 = document.querySelector('.champion-selected');
+  audio2.play();
+  audio2.volume = 0.1;
 };
+themeSong();
 
-const getCharacter = () => {
-  const charName = document.querySelector('#char-name').value
-  document.querySelector('.btn-final')
-}
+const getChar = (classe) =>
+  fetch(`https://api.open5e.com/classes/${classe}`)
+    .then((response) => response.json())
+    .then((data) => data);
+
+const getOponents = () =>
+  fetch('https://api.open5e.com/classes')
+    .then((response) => response.json())
+    .then((data) => data.results);
+
+const confirmBtn = document.querySelector('.confirm-btn');
+const charName = document.querySelector('#char-name');
+charName.addEventListener('input', () => {
+  if (!charName.hasAttribute('disabled')) {
+    confirmBtn.setAttribute('disabled', '');
+  }
+  if (charName.value.length > 2) confirmBtn.toggleAttribute('disabled');
+});
+
+const getCharacter = () => document.querySelector('#char-name').value;
 
 const selectSkin = (event) => {
+  const audio1 = document.querySelector('.chose-character');
+  audio1.play();
+  audio1.volume = 0.2;
   const element = document.querySelector('.selected-skin');
   if (element) element.classList.remove('selected-skin');
-  event.target.classList.add('selected-skin')
-}
+  event.target.classList.add('selected-skin');
+};
 
 const createImage = (src) => {
   const img = document.createElement('img');
-  img.src = src
-  img.className = 'spriteView'
+  img.src = src;
+  img.className = 'spriteView';
   img.addEventListener('click', selectSkin);
-  return img
-}
+  return img;
+};
 
 const spritesRender = (name) => {
   const imageContainer = document.querySelector('.class-image');
   imageContainer.innerHTML = '';
   Object.values(URLS[name]).forEach((url) => {
     imageContainer.appendChild(createImage(url));
-  })
-}
+  });
+};
 
 const discRender = (obj) => {
   const discription = document.querySelector('.description');
-  discription.innerHTML = (`
+  discription.innerHTML = `
     <p>Classe: ${obj.name}</p>
     <p>Dado de Vida: ${obj.hit_dice}</p>
     <p>Pontos fortes: ${obj.prof_saving_throws}</p>
-  `);
-}
+  `;
+};
 
 const click = async (el) => {
-  const className = el.lastElementChild.innerText.toLowerCase()
-  const characterSelected = await getChar(className);
+  const audio1 = document.querySelector('.chose-character');
+  audio1.play();
+  audio1.volume = 0.1;
+  const className = el.lastElementChild.innerText.toLowerCase();
+  characterSelected = await getChar(className);
   spritesRender(className);
-  discRender(characterSelected)
-}
+  discRender(characterSelected);
+};
 
-const button = document.querySelectorAll('.button');
-[...button].forEach((el) => {
+// http://localhost:5500/src/index/index.html
+
+const buttonClass = document.querySelectorAll('.button');
+[...buttonClass].forEach((el) => {
   el.addEventListener('click', () => click(el));
 });
 
-const confirm = () => {
+const getLife = (dado, prof) => {
+  const regex = /\d+$/g;
+  const dadoValue = Number(dado.match(regex));
+  return (dadoValue + prof) * 2;
+};
 
-  alert('GG')
-}
+const randomSkin = () => Math.floor(Math.random() * 2) + 1;
 
-document.querySelector('.btn-final').addEventListener('click', confirm)
+const enemys = async () => {
+  const response = await getOponents();
+  const oponent = response.filter(({ name }) => name !== 'Bard');
+  const saida = oponent.map((el) => {
+    const enemy = { ...fichaEmBranco };
+    enemy.nome = el.name;
+    enemy.classe = el.name;
+    enemy.dadoDeVida = el.hit_dice;
+    enemy.atributos = atributos[el.name];
+    enemy.vida = getLife(enemy.dadoDeVida, enemy.proficiencia);
+    enemy.vidaMaxima = enemy.vida;
+    enemy.classeDeArmadura = 10 + enemy.atributos.constituicao;
+    enemy.skin = Object.values(URLS[enemy.classe.toLocaleLowerCase()])[randomSkin()];
+    return enemy;
+  });
+  return saida;
+};
+
+const player1 = () => {
+  const { name: nome, hit_dice: dado } = characterSelected;
+  const player = { ...fichaEmBranco };
+  player.nome = getCharacter();
+  player.skin = document.querySelector('.selected-skin').src;
+  player.dadoDeVida = dado;
+  player.classe = nome;
+  player.atributos = atributos[nome];
+  player.vida = getLife(dado, player.proficiencia);
+  player.vidaMaxima = player.vida;
+  player.classeDeArmadura = 10 + player.atributos.constituicao;
+  localStorage.setItem('player', JSON.stringify(player));
+};
+
+const confirm = async () => {
+  localStorage.setItem('enemy', JSON.stringify(await enemys()));
+  player1();
+  window.location.href = './arena/arena.html';
+};
+
+confirmBtn.addEventListener('click', confirm);
