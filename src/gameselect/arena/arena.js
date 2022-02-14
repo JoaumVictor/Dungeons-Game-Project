@@ -12,13 +12,13 @@ const dom = {
   nickEnemy: document.querySelector('.nick-enemy'),
   imgEnemy: document.querySelector('.sprite-enemy'),
   vidaEnemy: document.querySelector('.enemy-vida'),
-  buttonsSkils: document.querySelectorAll('.skils-buttons'),
+  buttonsSkills: document.querySelectorAll('.skills-buttons'),
   combatText: document.querySelector('.text-combate'),
 };
 
-[...dom.buttonsSkils].forEach((el) =>
+[...dom.buttonsSkills].forEach((el) =>
   el.addEventListener('click', (e) => {
-    if (e.target === dom.buttonsSkils[0]) {
+    if (e.target === dom.buttonsSkills[0]) {
       dom.combatText.innerText = 'DIO BRANDO';
     }
   })

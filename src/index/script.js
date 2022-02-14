@@ -10,4 +10,5 @@ const playThemeSong = () => {
   audio1.play();
   audio1.volume = 0.1;
 };
+
 playThemeSong();
