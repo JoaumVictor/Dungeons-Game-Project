@@ -102,7 +102,7 @@ const atributos = {
 };
 // FICHA EM BRANCO
 // classeDeArmadura = 10 + constituição!
-// seu atributo atual acrescenta o valor dele a proficiencia!
+// seu atributo atual acrescenta o valor dele a proficiência!
 const fichaEmBranco = {
   nome: '',
   vidaMaxima: 0,
@@ -129,4 +129,66 @@ const fichaEmBranco = {
   },
 };
 
-export { fichaEmBranco, atributos };
+// FUNÇÕES GENERICAS
+const d = (number) => Math.floor(Math.random() * number + 1);
+const checaSeTemMana = (p1) => p1.mana > 0;
+const checaSeAcertou = (alvo, rolagem) => rolagem >= alvo.classeDeArmadura;
+const checaSeCritou = (rolagem) => rolagem > 19;
+const checaSeZerou = (alvo) => alvo.vida <= 0;
+
+const habilidades = {
+  ataqueBasico: (p1, alvo) => {
+    if (checaSeZerou(alvo)) return 'Não tem como atacar um inimigo sem vida...';
+    const rolagem = d(20) + p1.atributos.forca;
+    let rolagemDano = d(6) + p1.atributos.forca;
+    const msgErrou = `Vocẽ tirou ${rolagem} e errou seu ataque!`;
+    let msgDano = `Você tirou ${rolagem}, e seu inimigo recebeu ${rolagemDano} pontos de dano!`;
+    if (!checaSeAcertou(alvo, rolagem)) return msgErrou;
+    if (checaSeCritou(rolagem)) {
+      rolagemDano *= 2;
+      msgDano = `Você tirou ${rolagem}, e seu inimigo recebeu ${rolagemDano} pontos de dano!`;
+    }
+    alvo.vida -= rolagemDano;
+    if (checaSeZerou(alvo)) {
+      alvo.vida = 0;
+      msgDano = `${msgDano} Seu inimigo vai ao chão...`;
+    }
+    return msgDano;
+  },
+  habilidadeCurar: (meuPersonagem) => {
+    if (!checaSeTemMana(meuPersonagem)) return 'Você não tem mana suficiente!';
+    const rolagem = d(20);
+    if (rolagem <= 2) return 'Você não se concentrou o suficiente...';
+    const cura = d(6) + meuPersonagem.atributos.sabedoria;
+    if (rolagem === 20) {
+      meuPersonagem.mana -= 1;
+      const curaCritica = cura * 2;
+      meuPersonagem.vida += curaCritica;
+      return `No ápice da concentração você curou ${curaCritica} pontos de vida!`;
+    }
+    meuPersonagem.mana -= 1;
+    meuPersonagem.vida += cura;
+    return `Você curou ${cura} pontos de vida!`;
+  },
+  bolaDeFogo: (meuPersonagem, alvo) => {
+    const dano = d(10) + meuPersonagem.atributos.inteligencia;
+    const danoCritico = dano * 2;
+    const msgDanoNormal = `Você conjurou FireBall e causou ${dano} pontos de dano!`;
+    const msgDanoCritico = `Você conjurou FireBall com maestria! e causou ${danoCritico} pontos de dano!`;
+    if (!checaSeTemMana(meuPersonagem)) return 'Você não tem mana pra conjurar essa habilidade!';
+    const rolagem = d(20);
+    if (!checaSeAcertou(alvo, rolagem)) return 'Você errou sua habilidade!';
+    if (checaSeCritou(rolagem)) {
+      meuPersonagem.mana -= 1;
+      alvo.vida -= danoCritico;
+      if (checaSeZerou(alvo)) return `${msgDanoCritico}  Seu inimigo vai ao chão!`;
+      return msgDanoCritico;
+    }
+    meuPersonagem.mana -= 1;
+    alvo.vida -= dano;
+    if (checaSeZerou(alvo)) return `${msgDanoNormal} Seu inimigo vai ao chão!`;
+    return msgDanoNormal;
+  },
+};
+
+export { fichaEmBranco, atributos, habilidades };

@@ -124,9 +124,19 @@ const player1 = () => {
 };
 
 const confirm = async () => {
-  localStorage.setItem('enemy', JSON.stringify(await enemys()));
-  player1();
-  window.location.href = './arena/arena.html';
+  // const confirmButton = document.querySelector('.confirm-button');
+  const confirmButton = document.querySelector('.confirm-button');
+  const audio2 = document.querySelector('.champion-selected');
+  audio2.pause();
+  confirmButton.play();
+  confirmButton.volume = 0.1;
+  setTimeout(async () => {
+    localStorage.setItem('enemy', JSON.stringify(await enemys()));
+    player1();
+    window.location.href = './arena/arena.html';
+  }, 1000);
 };
 
 confirmBtn.addEventListener('click', confirm);
+
+export default { getChar, getOponents };

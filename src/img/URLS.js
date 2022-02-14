@@ -1,9 +1,8 @@
-
 const URLS = {
   barbarian: {
     1: 'https://i.pinimg.com/originals/3f/03/0e/3f030e31536820ac34b3463ffae65e87.gif',
     2: 'https://i.pinimg.com/originals/4b/86/c7/4b86c75cde91f31ec79ea2bfb1bef0f8.gif',
-    3:'https://i.pinimg.com/originals/15/de/fc/15defcb5f35239554da784918902b32a.gif',
+    3: 'https://i.pinimg.com/originals/15/de/fc/15defcb5f35239554da784918902b32a.gif',
   },
   cleric: {
     1: 'https://i.pinimg.com/originals/95/e5/f6/95e5f63558773cdd6120a55816a22570.gif',
@@ -55,6 +54,6 @@ const URLS = {
     2: 'https://i.pinimg.com/originals/b6/40/30/b64030bf5b203da3e619dedfa0180f33.gif',
     3: 'https://i.pinimg.com/originals/df/be/f7/dfbef7557838466715682f3243237953.gif',
   },
-}
+};
 
 export default URLS;
