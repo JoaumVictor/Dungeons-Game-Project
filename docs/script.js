@@ -12,7 +12,7 @@ startBtn.addEventListener('click', () => {
   audioClick.play();
   audioClick.volume = 0.1;
   setTimeout(() => {
-    window.location.href = '../gameselect/gameStart.html';
+    window.location.href = 'pages/gameselect/gameStart.html';
   }, 1500);
 });
 

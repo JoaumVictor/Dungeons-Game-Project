@@ -158,15 +158,15 @@ const habilidades = {
   habilidadeCurar: (meuPersonagem) => {
     if (!checaSeTemMana(meuPersonagem)) return 'Você não tem mana suficiente!';
     const rolagem = d(20);
+    meuPersonagem.mana -= 1;
     if (rolagem <= 2) return 'Você não se concentrou o suficiente...';
     const cura = d(6) + meuPersonagem.atributos.sabedoria;
     if (rolagem === 20) {
-      meuPersonagem.mana -= 1;
+      meuPersonagem.mana += 1;
       const curaCritica = cura * 2;
       meuPersonagem.vida += curaCritica;
       return `No ápice da concentração você curou ${curaCritica} pontos de vida!`;
     }
-    meuPersonagem.mana -= 1;
     meuPersonagem.vida += cura;
     return `Você curou ${cura} pontos de vida!`;
   },
@@ -177,14 +177,13 @@ const habilidades = {
     const msgDanoCritico = `Você conjurou FireBall com maestria! e causou ${danoCritico} pontos de dano!`;
     if (!checaSeTemMana(meuPersonagem)) return 'Você não tem mana pra conjurar essa habilidade!';
     const rolagem = d(20);
+    meuPersonagem.mana -= 1;
     if (!checaSeAcertou(alvo, rolagem)) return 'Você errou sua habilidade!';
     if (checaSeCritou(rolagem)) {
-      meuPersonagem.mana -= 1;
       alvo.vida -= danoCritico;
       if (checaSeZerou(alvo)) return `${msgDanoCritico}  Seu inimigo vai ao chão!`;
       return msgDanoCritico;
     }
-    meuPersonagem.mana -= 1;
     alvo.vida -= dano;
     if (checaSeZerou(alvo)) return `${msgDanoNormal} Seu inimigo vai ao chão!`;
     return msgDanoNormal;
