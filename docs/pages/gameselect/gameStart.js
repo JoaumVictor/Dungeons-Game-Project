@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import URLS from '../img/URLS.js';
-import { fichaEmBranco, atributos } from './Dados.js';
+import URLS from '../../dados/gifs.js';
+import { fichaEmBranco, atributos } from '../../dados/dados.js';
 
 let characterSelected;
 
@@ -133,10 +133,14 @@ const confirm = async () => {
   setTimeout(async () => {
     localStorage.setItem('enemy', JSON.stringify(await enemys()));
     player1();
-    window.location.href = './arena/arena.html';
+    window.location.href = '../arena/arena.html';
   }, 1000);
 };
 
 confirmBtn.addEventListener('click', confirm);
+
+window.onload = () => {
+  console.log('A página da seleção de campeões carregou!');
+}
 
 export default { getChar, getOponents };

@@ -15,3 +15,7 @@ startBtn.addEventListener('click', () => {
     window.location.href = '../gameselect/gameStart.html';
   }, 1500);
 });
+
+window.onload = () => {
+  console.log('Index carregado!')
+}

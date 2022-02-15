@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { habilidades } from '../Dados.js';
+import { habilidades } from '../../dados/dados.js';
 
 let player;
 let enemy;
@@ -25,6 +25,7 @@ const dom = {
   bt2enemy: document.querySelector('.bt2-enemy'),
   bt3enemy: document.querySelector('.bt3-enemy'),
   round: document.querySelector('.counter-round'),
+  roundBackground: document.querySelector('.combat-info'),  
 };
 
 let enemyPlayer;
@@ -41,7 +42,7 @@ const atualizaVida = () => {
       dom.combatText.innerText = 'Parabéns, você  ganhou!';
     }, 3000);
     setTimeout(() => {
-      window.location.href = './credits/credits.html';
+      window.location.href = '../credits/credits.html';
     }, 7000);
   }
   if (player.vida <= 0) {
@@ -52,57 +53,84 @@ const atualizaVida = () => {
       dom.combatText.innerText = 'Você foi derrotado';
     }, 3000);
     setTimeout(() => {
-      window.location.href = './credits/credits.html';
+      window.location.href = '../credits/credits.html';
     }, 7000);
   }
 };
 
-const enemyTurn = () => {
-  // if (enemyPlayer.vida < 5 && enemy.mana) {
+const turnoCor = (recebido) => {
+  const verde = 'rgb(59, 192, 81)';
+  const vermelho = 'rgb(156, 7, 7)';
+  if (recebido === 'player') {
+    console.log('terminou o turno do oponente, e a cor ficou verde');
+    return dom.roundBackground.style.backgroundColor = verde;
+  }
+  console.log('terminou o turno do player, e a cor ficou vermelha');
+  return dom.roundBackground.style.backgroundColor = vermelho;
+}
 
-  // };
-  // if (enemy.mana) {
-
-  // }
-  const ativou = habilidades.ataqueBasico(enemyPlayer, player);
-  dom.combatText.innerText = `OPONENTE: ${ativou}`;
-  dom.round.innerText += 1;
-  atualizaVida();
+const trocaturno = () => {
+  roundss += 1;
+  dom.round.innerText = roundss;
 };
 
-let roundss = 0;
+const desativaB = () => {
+  [...dom.buttonsSkills].forEach(alvo => {
+    alvo.toggleAttribute('disabled');
+  });
+}
+
+const msgTurno = () => {
+  dom.combatText.innerText = 'Seu turno!';
+};
+
+const enemyTurn = () => {
+  const ativou = habilidades.ataqueBasico(enemyPlayer, player);
+  dom.combatText.innerText = `OPONENTE: ${ativou}`;
+  atualizaVida();
+  setTimeout(() => {
+    trocaturno();
+    turnoCor('player');
+    if (enemyPlayer.vida > 0) {
+    msgTurno();
+    };
+    desativaB();
+  }, 4000);
+};
+
+let roundss = 1;
 
 const botoesArena = () => {
   dom.bt1player.addEventListener('click', () => {
-    dom.bt1player.toggleAttribute('disabled');
+    desativaB();
     setTimeout(() => {
       const ativou = habilidades.ataqueBasico(player, enemyPlayer);
       dom.combatText.innerText = ativou;
-      roundss += 1;
-      dom.round.innerText = roundss;
       atualizaVida();
     }, 1000);
     setTimeout(() => {
+      trocaturno();
+      turnoCor('enemy');
       enemyTurn();
-      dom.bt1player.toggleAttribute('disabled');
     }, 4000);
   });
+
   dom.bt2player.addEventListener('click', () => {
-    dom.bt2player.toggleAttribute('disabled');
+    desativaB();
     setTimeout(() => {
       const ativou = habilidades.habilidadeCurar(player);
       dom.combatText.innerText = ativou;
-      roundss += 1;
-      dom.round.innerText = roundss;
+      trocaturno();
       atualizaVida();
     }, 1000);
     setTimeout(() => {
+      turnoCor('enemy');
       enemyTurn();
-      dom.bt3player.toggleAttribute('disabled');
     }, 4000);
   });
+
   dom.bt3player.addEventListener('click', () => {
-    dom.bt3player.toggleAttribute('disabled');
+    desativaB();
     setTimeout(() => {
       const ativou = habilidades.bolaDeFogo(player, enemyPlayer);
       dom.combatText.innerText = ativou;
@@ -111,36 +139,9 @@ const botoesArena = () => {
       atualizaVida();
     }, 1000);
     setTimeout(() => {
+      turnoCor('enemy');
       enemyTurn();
-      dom.bt3player.toggleAttribute('disabled');
     }, 4000);
-  });
-  dom.bt1enemy.addEventListener('click', () => {
-    dom.bt1enemy.toggleAttribute('disabled');
-    setTimeout(() => {
-      const ativou = habilidades.ataqueBasico(enemyPlayer, player);
-      dom.combatText.innerText = ativou;
-      roundss += 1;
-      dom.round.innerText = roundss;
-      atualizaVida();
-      dom.bt1enemy.toggleAttribute('disabled');
-    }, 1000);
-  });
-  dom.bt2enemy.addEventListener('click', () => {
-    dom.bt2enemy.toggleAttribute('disabled');
-    setTimeout(() => {
-      habilidades.habilidadeCurar(enemy);
-      atualizaVida();
-      dom.bt2enemy.toggleAttribute('disabled');
-    }, 1000);
-  });
-  dom.bt3enemy.addEventListener('click', () => {
-    dom.bt3enemy.toggleAttribute('disabled');
-    setTimeout(() => {
-      habilidades.bolaDeFogo(enemyPlayer, player);
-      atualizaVida();
-      dom.bt3enemy.toggleAttribute('disabled');
-    }, 1000);
   });
 };
 
@@ -168,4 +169,5 @@ window.onload = () => {
   botoesArena();
   playlistMusicTheme();
   carregaPersonagens();
+  msgTurno();
 };

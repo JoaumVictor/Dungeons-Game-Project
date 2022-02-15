@@ -130,7 +130,8 @@ body {
 .combat-info {
   width: 700px;
   border: 2px solid white;
-  background-image: url(https://giffiles.alphacoders.com/211/211748.gif);
+  background-color: rgb(59, 192, 81);
+  opacity: 80%;
 }
 
 .typing-animation {
