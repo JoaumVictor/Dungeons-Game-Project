@@ -58,6 +58,17 @@ const atualizaVida = () => {
   }
 };
 
+let contadorDeMana = 0;
+
+const recuperaMana = () => {
+  contadorDeMana += 1;
+  if (contadorDeMana > 1) {
+    player.mana += 1;
+    enemy.mana += 1;
+    contadorDeMana = 0;
+  }
+};
+
 const turnoCor = (recebido) => {
   const verde = 'rgb(59, 192, 81)';
   const vermelho = 'rgb(156, 7, 7)';
@@ -69,7 +80,7 @@ const turnoCor = (recebido) => {
   return dom.roundBackground.style.backgroundColor = vermelho;
 }
 
-const trocaturno = () => {
+const trocaTurno = () => {
   roundss += 1;
   dom.round.innerText = roundss;
 };
@@ -89,13 +100,14 @@ const enemyTurn = () => {
   dom.combatText.innerText = `OPONENTE: ${ativou}`;
   atualizaVida();
   setTimeout(() => {
-    trocaturno();
+    trocaTurno();
     turnoCor('player');
     if (enemyPlayer.vida > 0) {
     msgTurno();
     };
     desativaB();
   }, 4000);
+  trocaturno();
 };
 
 let roundss = 1;

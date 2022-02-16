@@ -14,6 +14,18 @@ body {
   margin-top: 4%;
 }
 
+.flex {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
+.frase-beta {
+  font-size: 35px;
+}
+
 header {
   display: flex;
   font-size: 25px;
