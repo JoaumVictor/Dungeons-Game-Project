@@ -30,8 +30,6 @@ charName.addEventListener('input', () => {
   if (charName.value.length > 2) confirmBtn.toggleAttribute('disabled');
 });
 
-const getCharacter = () => document.querySelector('#char-name').value;
-
 const selectSkin = (event) => {
   const audio1 = document.querySelector('.chose-character');
   audio1.play();
@@ -86,7 +84,8 @@ const buttonClass = document.querySelectorAll('.button');
 const getLife = (dado, prof) => {
   const regex = /\d+$/g;
   const dadoValue = Number(dado.match(regex));
-  return (dadoValue + prof) * 2;
+  console.log('Calculou a vida');
+  return (dadoValue + prof) * 3;
 };
 
 const randomSkin = () => Math.floor(Math.random() * 2) + 1;
@@ -112,8 +111,10 @@ const enemys = async () => {
 const player1 = () => {
   const { name: nome, hit_dice: dado } = characterSelected;
   const player = { ...fichaEmBranco };
-  player.nome = getCharacter();
-  player.skin = document.querySelector('.selected-skin').src;
+  const nomeDoPlayer = document.querySelector('#char-name').value;
+  const aparencia = document.querySelector('.selected-skin').src;
+  player.nome = nomeDoPlayer;
+  player.skin = aparencia;
   player.dadoDeVida = dado;
   player.classe = nome;
   player.atributos = atributos[nome];
@@ -123,18 +124,21 @@ const player1 = () => {
   localStorage.setItem('player', JSON.stringify(player));
 };
 
-const confirm = async () => {
-  // const confirmButton = document.querySelector('.confirm-button');
-  const confirmButton = document.querySelector('.confirm-button');
-  const audio2 = document.querySelector('.champion-selected');
-  audio2.pause();
-  confirmButton.play();
-  confirmButton.volume = 0.1;
+const trocaPagina = () => {
   setTimeout(async () => {
     localStorage.setItem('enemy', JSON.stringify(await enemys()));
     player1();
     window.location.href = '../arena/arena.html';
   }, 1000);
+};
+
+const confirm = async () => {
+  const confirmButton = document.querySelector('.confirm-button');
+  const audio2 = document.querySelector('.champion-selected');
+  audio2.pause();
+  confirmButton.play();
+  confirmButton.volume = 0.1;
+  trocaPagina();
 };
 
 confirmBtn.addEventListener('click', confirm);

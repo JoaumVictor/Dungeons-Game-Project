@@ -121,7 +121,7 @@ const botoesArena = () => {
       atualizaVida();
     }, 1000);
     setTimeout(() => {
-      trocaturno();
+      trocaTurno();
       turnoCor('enemy');
       enemyTurn();
     }, 4000);
@@ -175,6 +175,10 @@ const playlistMusicTheme = () => {
   theme1.volume = 0.1;
 };
 
+const mensagemBeta = () => {
+  dom.combatText.innerText = 'Obrigado por testar a beta 1.0';
+};
+
 window.onload = () => {
   player = JSON.parse(localStorage.getItem('player'));
   allEnemys = JSON.parse(localStorage.getItem('enemy'));
@@ -182,4 +186,5 @@ window.onload = () => {
   playlistMusicTheme();
   carregaPersonagens();
   msgTurno();
+  mensagemBeta();
 };
